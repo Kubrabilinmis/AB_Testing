@@ -2,9 +2,11 @@
                                           AB Test Project
 
 Facebook kısa süre önce mevcut maximum bidding adı verilen teklif verme türüne alternatif olarak yeni bir teklif türü olan average bidding’i tanıttı.
-Müşterilerimizden biri   olan  bombabomba.com, bu yeni özelliği test etmeye karar verdi ve averagebidding’in maximumbidding’den daha fazla dönüşüm getirip getirmediğini anlamak için bir A/B testi yapmak istiyor.
+Müşterilerimizden biri   olan  bombabomba.com, bu yeni özelliği test etmeye karar verdi ve averagebidding’in maximumbidding’den daha fazla dönüşüm getirip getirmediğini anlamak
+için bir A/B testi yapmak istiyor.
 
-Veri Seti Hikayesi :  bombabomba.com’un web site bilgilerini içeren bu veri setinde kullanıcıların gördükleri ve tıkladıkları reklam sayıları gibi bilgilerin yanı sıra buradan gelen kazanç bilgileri yer almaktadır.  Kontrol ve Test grubu olmak üzere iki ayrı veri seti vardır.
+Veri Seti Hikayesi :  bombabomba.com’un web site bilgilerini içeren bu veri setinde kullanıcıların gördükleri ve tıkladıkları reklam sayıları gibi bilgilerin yanı sıra buradan 
+gelen kazanç bilgileri yer almaktadır.  Kontrol ve Test grubu olmak üzere iki ayrı veri seti vardır.
 
 Değişkenler :
 - Impression – Reklam görüntüleme sayısı
@@ -40,10 +42,8 @@ test.head()
 test.describe()          # n = 40
 control.describe()       # n = 40
 
-
 control["Purchase"].mean()   # max bidding        # 550.89
 test["Purchase"].mean()      # average bidding    # 582.10
-
 
 
 # Görev 1: A/B testinin hipotezini tanımlayınız.
@@ -67,7 +67,6 @@ print('Test Stat = %.4f, p-value = %.4f' % (test_stat, pvalue))
 # sonuc p value 0.1541 > 0.05 olduĞundan H0 reddedilemez. Test grubu(Average Bidding) için normallik varsayımı sağlanmaktadır
 
 
-
 # 2. Varyans Homojenlıgı varsayımı
 # H0: Varyanslar Homojendir.
 # H1: Varyanslar Homojen Değildir.
@@ -88,7 +87,6 @@ print('Test Stat = %.4f, p-value = %.4f' % (test_stat, pvalue))
 # 0.3493 p-value > 0.05 dir. H0 reddedilemez. Gruplar arasında  olarak istatistiksel olarak anlamlı farklılık yoktur.
 
 
-
 # CTR (Tıklanma Oranı )
 control["Click"].sum()/ control["Impression"].sum()
 test["Click"].sum() / test["Impression"].sum()
@@ -101,22 +99,30 @@ clicks = np.array([control["Click"].sum(),test["Click"].sum()])
 impressions = np.array([control["Impression"].sum(),test["Impression"].sum()])
 
 proportions_ztest(count=clicks, nobs= impressions)
-# p-value < 0.05 olduğu için H0 reddedilir. % 95 güven ile maxsimum bidding'in (tıklanma/görüntülenme) oranı average bidding'in (tıklanma/görüntülenme) oranları arasında anlamlı bir farklılık vardır. Maxsimum Bidding oranı Average Bidding oranından büyüktür.
+# p-value < 0.05 olduğu için H0 reddedilir. % 95 güven ile maxsimum bidding'in (tıklanma/görüntülenme) oranı average bidding'in (tıklanma/görüntülenme) oranları arasında 
+anlamlı bir farklılık vardır. Maxsimum Bidding oranı Average Bidding oranından büyüktür.
 
 
 
 # GÖREV 2 : Çıkan test sonuçlarının istatistiksel olarak anlamlı olup olmadığını yorumlayınız.
-# Parametrık t test sonucunda p-value değeri 0.05 ten küçük olmadığından H0 reddedilemez. Yani maxsimum bidding ve average bidding arasında istatistiksel olarak anlamlı bır farklılık yoktur.
+# Parametrık t test sonucunda p-value değeri 0.05 ten küçük olmadığından H0 reddedilemez. Yani maxsimum bidding ve average bidding arasında istatistiksel olarak anlamlı bır 
+farklılık yoktur.
 # Yapılan oran testi sonucunda maxsimum bidding ve average bidding oranları arasında anlamlı farklılık ortaya çıkmıştır.
 
 
 
 # GÖREV 3: Hangi testleri kullandınız? Sebeplerini belirtiniz.
 # Varsayım Kontrollerınde normallık varsayımı saglandığı için çünkü cıkan sonucu p-value > 0.05 olduğundan reddedemedik .
-# Varyans varsayımına bakıldığında varyans homojenliğinde sonuç yine p-value > 0.05 olduğundan dolayı reddemedik . Sonuç olarak iki varsayımımızda sağlandıgı için bağımsız iki örneklem t testi uyguladık.
+# Varyans varsayımına bakıldığında varyans homojenliğinde sonuç yine p-value > 0.05 olduğundan dolayı reddemedik . Sonuç olarak iki varsayımımızda sağlandıgı için bağımsız iki
+örneklem t testi uyguladık.
 
 
 
 # GÖREV 4: Görev 2’de verdiğiniz cevaba göre, müşteriye tavsiyeniz nedir?
-# Control(Maksimum teklif) ve Test(Ortalama teklif) satın alma ortalamalarına baktığımızda matematiksel olarak bir farklılık vardır . Fakat bu farklılığın şans eserimi ortaya çıkıp çıkmadığı bilinmemektedir. Parametrik bir test olan bağımsız iki örneklem t testine göre eski ve yeni sistemlerin getirileri arasında % 95 güvenle bir fark çıkmamıştır. Bu durumda biz getirisi ortalaması yüksek olan sistemide seçebiliriz. Yada iki grubun tıklanma oranı arasında anlamlı bir farklılığını test edebiliriz. Maxsimum bidding ve Average bidding tıklanma oranlarına baktığımızda maxsimum bidding in average bidding e göre daha yüksek olduğu görülmektedir. Bu farklılığın şans eseri ortaya çıkıp çıkmadığını araştırmak için oran testi yapıldı. Oran testi uyguladığımızda % 95 güven ile teklif verme türleri oranları arasında anlamlı bir farklılık çıkmıştır. İki grubun oranlarına baktığımızda sonuç maxsimum biddingin daha yüksek olduğunu göstermektedir.
+# Control(Maksimum teklif) ve Test(Ortalama teklif) satın alma ortalamalarına baktığımızda matematiksel olarak bir farklılık vardır . Fakat bu farklılığın şans eserimi ortaya 
+çıkıp çıkmadığı bilinmemektedir. Parametrik bir test olan bağımsız iki örneklem t testine göre eski ve yeni sistemlerin getirileri arasında % 95 güvenle bir fark çıkmamıştır. 
+Bu durumda biz getirisi ortalaması yüksek olan sistemide seçebiliriz. Yada iki grubun tıklanma oranı arasında anlamlı bir farklılığını test edebiliriz. Maxsimum bidding ve 
+Average bidding tıklanma oranlarına baktığımızda maxsimum bidding in average bidding e göre daha yüksek olduğu görülmektedir. Bu farklılığın şans eseri ortaya çıkıp çıkmadığını 
+araştırmak için oran testi yapıldı. Oran testi uyguladığımızda % 95 güven ile teklif verme türleri oranları arasında anlamlı bir farklılık çıkmıştır.İki grubun oranlarına 
+baktığımızda sonuç maxsimum biddingin daha yüksek olduğunu göstermektedir.
 
