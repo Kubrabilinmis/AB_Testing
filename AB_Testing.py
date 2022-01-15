@@ -1,5 +1,5 @@
 """
-                                          AB Test Project
+                                                                          AB Test Project
 
 Facebook kısa süre önce mevcut maximum bidding adı verilen teklif verme türüne alternatif olarak yeni bir teklif türü olan average bidding’i tanıttı.
 Müşterilerimizden biri   olan  bombabomba.com, bu yeni özelliği test etmeye karar verdi ve averagebidding’in maximumbidding’den daha fazla dönüşüm getirip getirmediğini anlamak
@@ -100,13 +100,13 @@ impressions = np.array([control["Impression"].sum(),test["Impression"].sum()])
 
 proportions_ztest(count=clicks, nobs= impressions)
 # p-value < 0.05 olduğu için H0 reddedilir. % 95 güven ile maxsimum bidding'in (tıklanma/görüntülenme) oranı average bidding'in (tıklanma/görüntülenme) oranları arasında 
-anlamlı bir farklılık vardır. Maxsimum Bidding oranı Average Bidding oranından büyüktür.
+#anlamlı bir farklılık vardır. Maxsimum Bidding oranı Average Bidding oranından büyüktür.
 
 
 
 # GÖREV 2 : Çıkan test sonuçlarının istatistiksel olarak anlamlı olup olmadığını yorumlayınız.
 # Parametrık t test sonucunda p-value değeri 0.05 ten küçük olmadığından H0 reddedilemez. Yani maxsimum bidding ve average bidding arasında istatistiksel olarak anlamlı bır 
-farklılık yoktur.
+# farklılık yoktur.
 # Yapılan oran testi sonucunda maxsimum bidding ve average bidding oranları arasında anlamlı farklılık ortaya çıkmıştır.
 
 
@@ -114,15 +114,15 @@ farklılık yoktur.
 # GÖREV 3: Hangi testleri kullandınız? Sebeplerini belirtiniz.
 # Varsayım Kontrollerınde normallık varsayımı saglandığı için çünkü cıkan sonucu p-value > 0.05 olduğundan reddedemedik .
 # Varyans varsayımına bakıldığında varyans homojenliğinde sonuç yine p-value > 0.05 olduğundan dolayı reddemedik . Sonuç olarak iki varsayımımızda sağlandıgı için bağımsız iki
-örneklem t testi uyguladık.
+# örneklem t testi uyguladık.
 
 
 
 # GÖREV 4: Görev 2’de verdiğiniz cevaba göre, müşteriye tavsiyeniz nedir?
 # Control(Maksimum teklif) ve Test(Ortalama teklif) satın alma ortalamalarına baktığımızda matematiksel olarak bir farklılık vardır . Fakat bu farklılığın şans eserimi ortaya 
-çıkıp çıkmadığı bilinmemektedir. Parametrik bir test olan bağımsız iki örneklem t testine göre eski ve yeni sistemlerin getirileri arasında % 95 güvenle bir fark çıkmamıştır. 
-Bu durumda biz getirisi ortalaması yüksek olan sistemide seçebiliriz. Yada iki grubun tıklanma oranı arasında anlamlı bir farklılığını test edebiliriz. Maxsimum bidding ve 
-Average bidding tıklanma oranlarına baktığımızda maxsimum bidding in average bidding e göre daha yüksek olduğu görülmektedir. Bu farklılığın şans eseri ortaya çıkıp çıkmadığını 
-araştırmak için oran testi yapıldı. Oran testi uyguladığımızda % 95 güven ile teklif verme türleri oranları arasında anlamlı bir farklılık çıkmıştır.İki grubun oranlarına 
-baktığımızda sonuç maxsimum biddingin daha yüksek olduğunu göstermektedir.
+# çıkıp çıkmadığı bilinmemektedir. Parametrik bir test olan bağımsız iki örneklem t testine göre eski ve yeni sistemlerin getirileri arasında % 95 güvenle bir fark çıkmamıştır. 
+# Bu durumda biz getirisi ortalaması yüksek olan sistemide seçebiliriz. Yada iki grubun tıklanma oranı arasında anlamlı bir farklılığını test edebiliriz. Maxsimum bidding ve 
+# Average bidding tıklanma oranlarına baktığımızda maxsimum bidding in average bidding e göre daha yüksek olduğu görülmektedir. Bu farklılığın şans eseri ortaya çıkıp çıkmadığını 
+# araştırmak için oran testi yapıldı. Oran testi uyguladığımızda % 95 güven ile teklif verme türleri oranları arasında anlamlı bir farklılık çıkmıştır.İki grubun oranlarına 
+# baktığımızda sonuç maxsimum biddingin daha yüksek olduğunu göstermektedir.
 
