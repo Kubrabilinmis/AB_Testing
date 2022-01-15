@@ -1,7 +1,7 @@
 """
                                                                           AB Test Project
 
-Facebook kısa süre önce mevcut maximum bidding adı verilen teklif verme türüne alternatif olarak yeni bir teklif türü olan average bidding’i tanıttı.
+Bir şirket kısa süre önce mevcut maximum bidding adı verilen teklif verme türüne alternatif olarak yeni bir teklif türü olan average bidding’i tanıttı.
 Müşterilerimizden biri   olan  bombabomba.com, bu yeni özelliği test etmeye karar verdi ve averagebidding’in maximumbidding’den daha fazla dönüşüm getirip getirmediğini anlamak
 için bir A/B testi yapmak istiyor.
 
