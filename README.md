@@ -1,4 +1,3 @@
-### A/B TESTING
 
 ![image](https://user-images.githubusercontent.com/81189969/149634748-ce699a51-0c50-4be9-bc2c-94566e5288f2.png)
 
